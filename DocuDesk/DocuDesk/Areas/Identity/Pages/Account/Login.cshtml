@@ -1,0 +1,169 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<!DOCTYPE html>
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login - SB Admin Pro</title>
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
+                            <!-- Social login form-->
+                            <div class="card my-5">
+                                <div class="card-body p-5 text-center">
+                                    <div class="h3 font-weight-light mb-3">Sign In</div>
+                                    <!-- Social login links-->
+                                    <a class="btn btn-icon btn-facebook mx-1" href="#!"></a>
+                                    <a class="btn btn-icon btn-github mx-1" href="#!"></a>
+                                    <a class="btn btn-icon btn-google mx-1" href="#!"></a>
+                                    <a class="btn btn-icon btn-twitter mx-1" href="#!"></a>
+                                </div>
+                                <hr class="my-0">
+                                <div class="card-body p-5">
+                                    <!-- Login form-->
+                                    <form>
+                                        <!-- Form Group (email address)-->
+                                        <div class="form-group">
+                                            <label class="text-gray-600 small" for="emailExample">Email address</label>
+                                            <input class="form-control form-control-solid py-4" type="text" placeholder="" aria-label="Email Address" aria-describedby="emailExample">
+                                        </div>
+                                        <!-- Form Group (password)-->
+                                        <div class="form-group">
+                                            <label class="text-gray-600 small" for="passwordExample">Password</label>
+                                            <input class="form-control form-control-solid py-4" type="password" placeholder="" aria-label="Password" aria-describedby="passwordExample">
+                                        </div>
+                                        <!-- Form Group (forgot password link)-->
+                                        <div class="form-group"><a class="small" href="#">Forgot your password?</a></div>
+                                        <!-- Form Group (login box)-->
+                                        <div class="form-group d-flex align-items-center justify-content-between mb-0">
+                                            <div class="custom-control custom-control-solid custom-checkbox">
+                                                <input class="custom-control-input small" id="customCheck1" type="checkbox">
+                                                <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                            </div>
+                                            <a class="btn btn-primary" href="#">Login</a>
+                                        </div>
+                                    </form>
+                                </div>
+                                <hr class="my-0">
+                                <div class="card-body px-5 py-4">
+                                    <div class="small text-center">
+                                        New user?
+                                        <a href="Register.html">Create an account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <div id="layoutAuthentication_footer">
+            <footer class="footer mt-auto footer-dark">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 small">Copyright © Your Website 2020</div>
+                        <div class="col-md-6 text-md-right small">
+                            <a href="#!">Privacy Policy</a>                                ·
+                            <a href="#!">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--h1>@ViewData["Title"]</!--h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h4>Use a local account to log in.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to log in.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div-->
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
